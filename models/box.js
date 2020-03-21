@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
-
-var Box = mongoose.model('box', {
-    racket_id: [
-        { x_cord: { type: Number } },
-        { y_cord: { type: Number } }
-    ],
+const Coordinate = require('./coordinate');
+const Box = mongoose.model('box', {
+    racket_id: [Coordinate],
     total_weight: { type: Number },
     rem_weight: { type: Number },
     no_of_items: { type: Number },

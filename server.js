@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const gold = require("./routes/api/gold");
 const users = require("./routes/api/users");
-var { Box } = require('./models/box');
+const { Box } = require('./models/box');
+const { Coordinate } = require('./models/coordinate');
 const app = express();
 
 // Bodyparser middleware
@@ -46,11 +47,14 @@ for (var i = 0; i < 10; i++) {
   for (var j = 0; j < 10; j++) {
     console.log("x:", i);
     console.log("y:", j);
-    var box = new Box({
-      racket_id: {
-        x_cord: i,
-        y_cord: j
-      },
+    const coordinate = new Coordinate(
+      {
+        y_cord: j,
+        x_cord: i
+      }
+    );
+    const box = new Box({
+      racket_id: [coordinate],
       total_weight: 100,
       rem_weight: 100,
       no_of_items: 0,
